@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# MNIST dataset (Python)
+python/data/
+
+# C++ build files
+cpp/build/
+cpp/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+*.dll
+*.lib
+*.exp
+*.pdb
+*.exe
+*.ninja
+*.log
+
+# IDE / OS junk
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNIST Volume Control</title>
+  <link rel="stylesheet" href="volume_style.css">
+</head>
+
+<body>
+<header>
+  <div class="brand">Emmanuel Nwankwo</div>
+</header>
+
+<main>
+  <div class="intro-text">
+    <h1>MNIST Volume Control</h1>
+    <p>Draw a three-digit number (000–100) to set the volume.</p>
+  </div>
+  <div class="content-wrapper">
+    <div class="left-panel">
+      <div id="main-content">
+        <div class="canvas-box">
+          <canvas id="canvas1" width="280" height="280"></canvas>
+          <div class="prediction" id="pred1">-</div>
+        </div>
+        <div class="canvas-box">
+          <canvas id="canvas2" width="280" height="280"></canvas>
+          <div class="prediction" id="pred2">-</div>
+        </div>
+        <div class="canvas-box">
+          <canvas id="canvas3" width="280" height="280"></canvas>
+          <div class="prediction" id="pred3">-</div>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="predict-btn">Predict</button>
+        <button id="clear-btn">Clear All</button>
+      </div>
+    </div>
+    <div id="volume-control">
+      <h3>Volume</h3>
+      <div class="volume-bar-container">
+        <div id="volume-bar-fill"></div>
+      </div>
+      <span id="volume-value">000</span>
+    </div>
+  </div>
+
+  <div id="audioPlayerContainer" class="audio-player-container">
+    <p id="track-info">Select an audio source to begin.</p>
+    <audio id="audioPlayer" controls loop></audio>
+    <div id="audio-controls">
+        <button id="uploadAudioBtn">Upload Audio</button>
+        <button id="defaultAudioBtn">Use Default Audio</button>
+    </div>
+  </div>
+  <input type="file" id="audioFileInput" accept="audio/*">
+</main>
+
+<div id="infoOverlay" class="info-overlay show">
+  <div class="info-modal">
+    <div class="info-slides">
+      <div class="info-slide" data-slide="0">
+        <h2>Welcome!</h2>
+        <p>This is a Deep Learning Volume Setter. Draw a number from 0 to 100 to control the audio volume.</p>
+        <p><strong>Disclaimer:</strong> Due to web sandbox restrictions, this can't change your system volume. Instead, you can control the volume of an audio file here on the page.</p>
+      </div>
+      <div class="info-slide" data-slide="1">
+        <h2>Convolutional Neural Network (CNN)</h2>
+        <p>This project is powered by a CNN, a type of deep learning model ideal for recognizing images. It automatically learns features like edges and curves to identify patterns.</p>
+        <img src="./cnn.png" alt="CNN visualization">
+      </div>
+      <div class="info-slide" data-slide="2">
+        <h2>Model Performance</h2>
+        <p>The model was trained on 60,000 images from the MNIST dataset. On a separate test set of 10,000 images, it achieved approximately:</p>
+        <div class="accuracy-display">98.7%</div>
+        <p>...accuracy.</p>
+      </div>
+      <div class="info-slide" data-slide="3">
+        <h2>Your Drawings vs. Training Data</h2>
+        <p>While the model is highly accurate on clean MNIST digits, your drawings are different! To help, <strong>in-browser preprocessing</strong> centers and scales your drawing to match the training data, greatly improving accuracy.</p>
+      </div>
+    </div>
+    <div class="info-nav">
+      <button id="prevInfoBtn">&larr; Prev</button>
+      <div id="infoDots" class="info-dots"></div>
+      <button id="nextInfoBtn">Next &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<div id="imageModal" class="image-modal">
+  <span id="closeImageModal">&times;</span>
+  <img id="modalImage" class="modal-content">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+<script src="volume_script.js"></script>
+</body>
+</html>
