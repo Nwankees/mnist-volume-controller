@@ -1,11 +1,11 @@
-#include <torch/script.h> // One-stop header.
+#include <torch/script.h>
 #include <torch/torch.h>
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <chrono>
 
 int main() {
-    // ✅ Use all cores available
+    // Use all cores available
     torch::set_num_threads(std::thread::hardware_concurrency());
 
     try {
@@ -25,7 +25,7 @@ int main() {
         // Convert to tensor (NCHW format)
         auto input = torch::from_blob(img.data, {1, 1, 28, 28}, torch::kFloat32).clone();
 
-        // ✅ Warm-up (important to get fair timing)
+        // Warm-up 
         for (int i = 0; i < 10; i++) {
             auto out = module.forward({input}).toTensor();
         }
